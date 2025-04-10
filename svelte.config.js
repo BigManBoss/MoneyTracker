@@ -1,14 +1,17 @@
-import adapter from '@sveltejs/adapter-static'; // ← Add this
-import { vitePreprocess } from '@sveltejs/kit/vite';
+import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'; // Updated import path
 
-export default {
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
   kit: {
     adapter: adapter({
-      fallback: 'index.html' // ← Required for SPA mode
+      fallback: 'index.html'
     }),
     prerender: {
-      entries: [] // ← Disable prerendering
+      entries: []
     }
   },
   preprocess: vitePreprocess()
 };
+
+export default config;
